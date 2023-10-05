@@ -1,0 +1,3 @@
+from models.products import Products
+from models.categories import Categories
+from models.products_categories_xref import products_categories_association_table
