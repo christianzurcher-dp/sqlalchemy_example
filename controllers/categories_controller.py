@@ -92,14 +92,14 @@ def category_activity(req: Request, category_id) -> Response:
 
         if category_query.active:
 
-            return jsonify("Product activated successfully"), 200
+            return jsonify("Category activated successfully"), 200
 
         else:
 
-            return jsonify("Product deactivated successfully"), 200
+            return jsonify("Category deactivated successfully"), 200
 
     except:
 
         db.session.rollback()
 
-        return jsonify("Error: unable to activate/deactive product"), 400
+        return jsonify("Error: unable to activate/deactive Category"), 400

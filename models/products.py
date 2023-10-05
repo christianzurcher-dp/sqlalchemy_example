@@ -14,7 +14,7 @@ class Products(db.Model):
     description = db.Column(db.String())
     price = db.Column(db.Float())
     active = db.Column(db.Boolean(), default=True)
-    category_id = db.Column(UUID(as_uuid=True), db.ForeignKey("Categories.category_id"), nullable=False)
+    category_id = db.Column(UUID(as_uuid=True), db.ForeignKey("Categories.category_id", ondelete="CASCADE"), nullable=False)
 
     categories = db.relationship("Categories", secondary=products_categories_association_table, back_populates='products')
 

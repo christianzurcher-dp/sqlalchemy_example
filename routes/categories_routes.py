@@ -30,6 +30,6 @@ def category_delete_by_id(category_id) -> Response:
     return controllers.category_delete_by_id(request, category_id)
 
 
-@categories.route('category/<category_id>', methods=['PATCH'])
+@categories.route('/category/<category_id>', methods=['PATCH'])
 def category_activity(category_id) -> Response:
     return controllers.category_activity(request, category_id)
