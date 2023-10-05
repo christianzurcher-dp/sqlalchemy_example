@@ -25,6 +25,9 @@ class Products(db.Model):
         self.active = active
         self.category_id = category_id
 
+    def get_new_product():
+        return Products("", "", 0, True, "")
+
 
 class ProductsSchema(ma.Schema):
     class Meta:

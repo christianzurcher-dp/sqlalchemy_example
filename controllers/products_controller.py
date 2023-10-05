@@ -8,19 +8,16 @@ from util.reflection import populate_object
 
 def product_add(req: Request) -> Response:
     post_data = req.form if req.form else req.json
-    product_name = post_data.get("product_name")
-    description = post_data.get("description")
-    price = post_data.get("price")
-    active = True
-    category_id = post_data.get("category_id")
 
-    new_record = Products(product_name, description, price, active, category_id)
+    new_record = Products.get_new_product()
+
+    populate_object(new_record, post_data)
 
     db.session.add(new_record)
     db.session.commit()
 
-    product_query = db.session.query(Products).filter(Products.product_name == product_name).first()
-    category_query = db.session.query(Categories).filter(Categories.category_id == category_id).first()
+    product_query = db.session.query(Products).filter(Products.product_name == new_record.product_name).first()
+    category_query = db.session.query(Categories).filter(Categories.category_id == new_record.category_id).first()
 
     product_query.categories.append(category_query)
     db.session.commit()

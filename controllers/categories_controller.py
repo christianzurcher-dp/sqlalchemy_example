@@ -7,14 +7,16 @@ from util.reflection import populate_object
 
 def category_add(req: Request) -> Response:
     post_data = req.form if req.form else req.json
-    category_name = post_data.get("category_name")
+    # category_name = post_data.get("category_name")
 
-    new_record = Categories(category_name)
+    new_record = Categories.get_new_category()
+
+    populate_object(new_record, post_data)
 
     db.session.add(new_record)
     db.session.commit()
 
-    query = db.session.query(Categories).filter(Categories.category_name == category_name).first()
+    query = db.session.query(Categories).filter(Categories.category_name == new_record.category_name).first()
 
     return jsonify(category_schema.dump(query)), 201
 

@@ -17,6 +17,9 @@ class Categories(db.Model):
     def __init__(self, category_name):
         self.category_name = category_name
 
+    def get_new_category():
+        return Categories("")
+
 
 class CategoriesSchema(ma.Schema):
     class Meta:
